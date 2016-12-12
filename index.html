@@ -270,7 +270,9 @@
 					if(tileArray[checkY][checkX].occupy !== ""){
 						if(tileArray[checkY][checkX].tileCoordX == selectedTile.tileCoordX){
 							if(tileArray[checkY][checkX].tileCoordY < selectedTile.tileCoordY){
-								blockMove[0] = tileArray[checkY][checkX].tileCoordY;
+								if(tileArray[checkY][checkX].tileCoordY > blockMove[0]){
+									blockMove[0] = tileArray[checkY][checkX].tileCoordY;
+								}
 							}else if(tileArray[checkY][checkX].tileCoordY > selectedTile.tileCoordY){
 								if(tileArray[checkY][checkX].tileCoordY < blockMove[4]){
 									blockMove[4] = tileArray[checkY][checkX].tileCoordY;
@@ -319,6 +321,8 @@
 						case("Rook"):
 							if(tileArray[checkY][checkX].tileCoordY <= blockMove[4] && tileArray[checkY][checkX].tileCoordY >= blockMove[0] && tileArray[checkY][checkX].tileCoordX <= blockMove[2] && tileArray[checkY][checkX].tileCoordX >= blockMove[6]){
 								return (tileArray[checkY][checkX].tileCoordY == selectedTile.tileCoordY || tileArray[checkY][checkX].tileCoordX == selectedTile.tileCoordX) && tileArray[checkY][checkX].occupy.player !== selectedTile.occupy.player;
+							}else{
+								return false;
 							}
 						break;
 						case("Pawn"):
